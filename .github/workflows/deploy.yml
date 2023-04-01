@@ -23,6 +23,8 @@ jobs:
       with:
         submodules: true
         
+    - run: sudo apt install libfreetype6-dev libjpeg-dev libpng-dev zlib1g zlib1g-dev libfontconfig1-dev fontconfig libmagick++-dev libxml2-dev libtiff-dev freeglut3-dev
+        
     - run: chmod a+x build_deploy.sh
           
     - name: Build and Deploy
