@@ -1,10 +1,16 @@
+echo "Installing aqt..."
+
 pip install aqtinstall
 
 mkdir Qt
 
+echo "Installing Qt..."
+
 aqt install-qt --outputdir ./Qt linux desktop 6.4.3 gcc_64 -m qtimageformats qtwebchannel qtwebengine qtwebview qtpositioning || exit 1
 
 self_dir=`echo "$(cd "$(dirname ".")" && pwd)"`
+
+echo "Building md-editor..."
 
 mkdir build-md-editor
 
@@ -12,13 +18,19 @@ cmake -DCMAKE_BUILD_TYPE=Release -S md-editor -B build-md-editor -DCMAKE_PREFIX_
 
 cmake --build build-md-editor --config Release || exit 1
 
+echo "Building md-pdf..."
+
 mkdir build-md-pdf
 
 cmake -DCMAKE_BUILD_TYPE=Release -S md-pdf -B build-md-pdf -DBUILD_MDPDF_TESTS=OFF -DCMAKE_PREFIX_PATH=${self_dir}/Qt/6.4.3/gcc_64 || exit 1
 
 cmake --build build-md-pdf --config Release || exit 1
 
+echo "Installing Qt Installer Framework..."
+
 aqt install-tool --outputdir ./Qt linux desktop tools_ifw qt.tools.ifw.45 || exit 1
+
+echo "Copying binaries..."
 
 rm -rf ./installer/packages/mironchik.igor.markdown/data/bin
 
@@ -51,5 +63,7 @@ rm -rf ./installer/packages/mironchik.igor.markdown/data/lib/metatypes || exit 1
 rm -rf ./installer/packages/mironchik.igor.markdown/data/lib/pkgconfig || exit 1
 
 rm -rf ./installer/packages/mironchik.igor.markdown/data/lib/*.prl || exit 1
+
+echo "Creating installer..."
 
 ./Qt/Tools/QtInstallerFramework/4.5/bin/binarycreator -c ./installer/config/config.xml -p ./installer/packages Markdown_Linux_x64.Installer || exit 1

@@ -10,3 +10,9 @@
 /**/*.moc
 /**/ui_*.h
 /**/qrc_*.cpp
+/Qt/
+aqtinstall.log
+/**/build*
+/installer/packages/mironchik.igor.markdown/data/bin
+/installer/packages/mironchik.igor.markdown/data/lib
+/installer/packages/mironchik.igor.markdown/data/plugins
