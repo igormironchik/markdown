@@ -23,7 +23,7 @@ jobs:
       with:
         submodules: recursive
         
-    - run: sudo apt install libfreetype6-dev libjpeg-dev libpng-dev zlib1g zlib1g-dev libfontconfig1-dev fontconfig libmagick++-dev libxml2-dev libtiff-dev freeglut3-dev libxcb-icccm4  libxcb-image0 libxcb-keysyms1 libxcb-randr0
+    - run: sudo apt install libfreetype6-dev libjpeg-dev libpng-dev zlib1g zlib1g-dev libfontconfig1-dev fontconfig libmagick++-dev libxml2-dev libtiff-dev freeglut3-dev libxcb-icccm4  libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0
         
     - run: chmod a+x build_deploy.sh
           
