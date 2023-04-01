@@ -1,0 +1,171 @@
+
+name: "deploy"
+
+on:
+  workflow_dispatch:
+  
+env:
+  CONAN_HOME: "${{ github.workspace }}/.conan2"
+
+jobs:
+  linux:
+    name: linux
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        language: ['cpp']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+        
+    - run: chmod a+x build_deploy.sh
+          
+    - name: Build and Deploy
+      run: ./build_deploy.sh
+      
+    - name: Upload installer
+      uses: actions/upload-artifact@v3
+      with:
+        name: Markdown_Linux_x64.Installer
+        path: Markdown_Linux_x64.Installer
+
+#   windows:
+#     name: windows
+#     runs-on: windows-2019
+# 
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         language: ['cpp']
+# 
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v3
+#       with:
+#         submodules: true
+# 
+#     - uses: suisei-cn/actions-download-file@v1
+#       id: downloadfile
+#       name: Download ImageMagick
+#       with:
+#         url: "https://github.com/igormironchik/md-pdf/releases/download/0.7.0/ImageMagick.zip"
+#         target: downloads/
+# 
+#     - name: Unzip ImageMagick
+#       run: 7z x downloads/ImageMagick.zip
+# 
+#     - name: Append ImageMagick into PATH
+#       run: echo "${{ github.workspace }}/ImageMagick" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+# 
+#     - name: Test ImageMagick
+#       run: convert -version
+# 
+#     - name: Install Conan
+#       id: conan
+#       uses: turtlebrowser/get-conan@main
+#       
+#     - run: conan profile detect
+#           
+#     - name: Install Qt
+#       uses: jurplel/install-qt-action@v3
+#       with:
+#         version: '6.4.3'
+#         
+#     - run: mkdir build
+# 
+#     - name: Install dependencies with Conan
+#       run: conan install -of build .
+#       
+#     - name: Generate Makefiles
+#       run: cmake -S . -B build -DCMAKE_PREFIX_PATH="${{ github.workspace }}/ImageMagick" -DCMAKE_BUILD_TYPE=Relese
+# 
+#     - name: Append PATH with packages
+#       run: echo "${{ github.workspace }}\build\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+# 
+#     - name: Build
+#       run: cmake --build build --config Release
+# 
+#     - name: Test
+#       run: ctest --output-on-failure --verbose --test-dir build -C Release
+# 
+#   macos:
+#     name: macos
+#     runs-on: macos-11
+# 
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         language: ['cpp']
+# 
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v3
+#       with:
+#         submodules: true
+# 
+#     - run: brew update
+# 
+#     - run: rm '/usr/local/bin/2to3'
+# 
+#     - run: rm '/usr/local/bin/2to3-3.11'
+# 
+#     - run: rm '/usr/local/bin/idle3'
+# 
+#     - run: rm '/usr/local/bin/idle3.11'
+# 
+#     - run: rm '/usr/local/bin/pydoc3'
+# 
+#     - run: rm '/usr/local/bin/pydoc3.11'
+# 
+#     - run: rm '/usr/local/bin/python3'
+# 
+#     - run: rm '/usr/local/bin/python3.11'
+# 
+#     - run: rm '/usr/local/bin/python3-config'
+# 
+#     - run: rm '/usr/local/bin/python3.11-config'
+# 
+#     - run: rm '/usr/local/lib/libtcl8.6.dylib'
+# 
+#     - run: rm '/usr/local/lib/libtk8.6.dylib'
+# 
+#     - run: brew upgrade
+# 
+#     - run: brew install imagemagick@6
+# 
+#     - run: brew uninstall imagemagick
+# 
+#     - run: cp -r /usr/local/opt/imagemagick@6/bin /usr/local
+# 
+#     - run: cp -r /usr/local/opt/imagemagick@6/lib /usr/local
+# 
+#     - run: cp -r /usr/local/opt/imagemagick@6/include /usr/local
+# 
+#     - run: cp -r /usr/local/opt/imagemagick@6/etc /usr/local
+# 
+#     - run: cp -r /usr/local/opt/imagemagick@6/share /usr/local
+# 
+#     - name: Test ImageMagick
+#       run: convert -version
+# 
+#     - name: Install Qt
+#       uses: jurplel/install-qt-action@v3
+#       with:
+#         version: '6.4.3'
+# 
+#     - name: Generate Makefiles
+#       run: cmake -DCMAKE_BUILD_TYPE=Relese -DOPENSSL_ROOT_DIR=$(brew --prefix)/opt/openssl@1.1 .
+# 
+#     - name: Build
+#       run: make
+# 
+#     - name: Test
+#       run: |
+#         export QT_QPA_PLATFORM=offscreen
+#         export DYLD_FRAMEWORK_PATH=${{ github.workspace }}/../Qt/6.4.3/macos/lib:$DYLD_FRAMEWORK_PATH
+#         ctest --output-on-failure --verbose
