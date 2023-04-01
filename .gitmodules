@@ -1,0 +1,6 @@
+[submodule "md-editor"]
+	path = md-editor
+	url = https://github.com/igormironchik/md-editor.git
+[submodule "md-pdf"]
+	path = md-pdf
+	url = https://github.com/igormironchik/md-pdf.git
