@@ -16,3 +16,6 @@ aqtinstall.log
 /installer/packages/mironchik.igor.markdown/data/bin
 /installer/packages/mironchik.igor.markdown/data/lib
 /installer/packages/mironchik.igor.markdown/data/plugins
+/installer/packages/mironchik.igor.markdown/data/libexec
+/installer/packages/mironchik.igor.markdown/data/resources
+/installer/packages/mironchik.igor.markdown/data/translations
