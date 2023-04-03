@@ -62,7 +62,7 @@ jobs:
      - run: conan profile detect
      
      - name: Build and Deploy
-       run: build_deploy.cmd
+       run: cmd /c "START /b build_deploy.bat"
       
      - name: Upload installer
        uses: actions/upload-artifact@v3
