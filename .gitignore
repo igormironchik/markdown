@@ -12,7 +12,7 @@
 /**/qrc_*.cpp
 /Qt/
 aqtinstall.log
-/**/build*
+/**/build-*
 /installer/packages/mironchik.igor.markdown/data/bin
 /installer/packages/mironchik.igor.markdown/data/lib
 /installer/packages/mironchik.igor.markdown/data/plugins
