@@ -2,8 +2,8 @@
 <Package>
     <DisplayName>Markdown Tools</DisplayName>
     <Description>Install Markdown Tools.</Description>
-    <Version>0.0.1</Version>
-    <ReleaseDate>2023-04-01</ReleaseDate>
+    <Version>0.0.2</Version>
+    <ReleaseDate>2023-04-04</ReleaseDate>
     <Licenses>
         <License name="GNU GPL 3.0" file="license.txt" />
     </Licenses>
