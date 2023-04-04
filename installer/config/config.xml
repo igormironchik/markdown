@@ -6,4 +6,6 @@
     <Publisher>Igor Mironchik</Publisher>
     <StartMenuDir>Markdown Tools</StartMenuDir>
     <TargetDir>@HomeDir@/Markdown Tools</TargetDir>
+    <WizardDefaultWidth>1000</WizardDefaultWidth>
+    <WizardDefaultHeight>650</WizardDefaultHeight>
 </Installer>
