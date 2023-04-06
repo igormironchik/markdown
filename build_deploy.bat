@@ -94,6 +94,12 @@ IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
 )
 
+mkdir installer\packages\mironchik.igor.markdown\data\lib
+
+IF %ERRORLEVEL% NEQ 0 (
+	exit /B %ERRORLEVEL%
+)
+
 copy /Y Qt\6.5.0\msvc2019_64\bin installer\packages\mironchik.igor.markdown\data\bin
 
 IF %ERRORLEVEL% NEQ 0 (
