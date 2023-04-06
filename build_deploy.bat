@@ -160,13 +160,25 @@ IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
 )
 
-copy /Y build-md-pdf\lib installer\packages\mironchik.igor.markdown\data\lib
+xcopy build-md-pdf\lib installer\packages\mironchik.igor.markdown\data\lib /S /Y
 
 IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
 )
 
 del /Q installer\packages\mironchik.igor.markdown\data\lib\*.lib
+
+IF %ERRORLEVEL% NEQ 0 (
+	exit /B %ERRORLEVEL%
+)
+
+rmdir /S /Q installer\packages\mironchik.igor.markdown\data\lib\Release
+
+IF %ERRORLEVEL% NEQ 0 (
+	exit /B %ERRORLEVEL%
+)
+
+del /Q installer\packages\mironchik.igor.markdown\data\bin\test.render.bat
 
 IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
