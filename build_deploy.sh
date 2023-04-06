@@ -6,7 +6,7 @@ mkdir Qt
 
 echo "Installing Qt..."
 
-aqt install-qt --outputdir ./Qt linux desktop 6.4.3 gcc_64 -m qtimageformats qtwebchannel qtwebengine qtwebview qtpositioning || exit 1
+aqt install-qt --outputdir ./Qt linux desktop 6.5.0 gcc_64 -m qtimageformats qtwebchannel qtwebengine qtwebview qtpositioning || exit 1
 
 self_dir=`echo "$(cd "$(dirname ".")" && pwd)"`
 
@@ -14,7 +14,7 @@ echo "Building md-editor..."
 
 mkdir build-md-editor
 
-cmake -DCMAKE_BUILD_TYPE=Release -S md-editor -B build-md-editor -DCMAKE_PREFIX_PATH=${self_dir}/Qt/6.4.3/gcc_64 || exit 1
+cmake -DCMAKE_BUILD_TYPE=Release -S md-editor -B build-md-editor -DCMAKE_PREFIX_PATH=${self_dir}/Qt/6.5.0/gcc_64 || exit 1
 
 cmake --build build-md-editor --config Release || exit 1
 
@@ -22,7 +22,7 @@ echo "Building md-pdf..."
 
 mkdir build-md-pdf
 
-cmake -DCMAKE_BUILD_TYPE=Release -S md-pdf -B build-md-pdf -DBUILD_MDPDF_TESTS=OFF -DCMAKE_PREFIX_PATH=${self_dir}/Qt/6.4.3/gcc_64 || exit 1
+cmake -DCMAKE_BUILD_TYPE=Release -S md-pdf -B build-md-pdf -DBUILD_MDPDF_TESTS=OFF -DCMAKE_PREFIX_PATH=${self_dir}/Qt/6.5.0/gcc_64 || exit 1
 
 cmake --build build-md-pdf --config Release || exit 1
 
@@ -64,15 +64,15 @@ cp -r ./build-md-pdf/lib ./installer/packages/mironchik.igor.markdown/data || ex
 
 rm -f ./installer/packages/mironchik.igor.markdown/data/lib/*.a || exit 1
 
-cp -r ./Qt/6.4.3/gcc_64/lib ./installer/packages/mironchik.igor.markdown/data || exit 1
+cp -r ./Qt/6.5.0/gcc_64/lib ./installer/packages/mironchik.igor.markdown/data || exit 1
 
-cp ./Qt/6.4.3/gcc_64/libexec/QtWebEngineProcess ./installer/packages/mironchik.igor.markdown/data/libexec/QtWebEngineProcess || exit 1
+cp ./Qt/6.5.0/gcc_64/libexec/QtWebEngineProcess ./installer/packages/mironchik.igor.markdown/data/libexec/QtWebEngineProcess || exit 1
 
-cp -r ./Qt/6.4.3/gcc_64/plugins ./installer/packages/mironchik.igor.markdown/data || exit 1
+cp -r ./Qt/6.5.0/gcc_64/plugins ./installer/packages/mironchik.igor.markdown/data || exit 1
 
-cp -r ./Qt/6.4.3/gcc_64/resources ./installer/packages/mironchik.igor.markdown/data || exit 1
+cp -r ./Qt/6.5.0/gcc_64/resources ./installer/packages/mironchik.igor.markdown/data || exit 1
 
-cp -r ./Qt/6.4.3/gcc_64/translations ./installer/packages/mironchik.igor.markdown/data || exit 1
+cp -r ./Qt/6.5.0/gcc_64/translations ./installer/packages/mironchik.igor.markdown/data || exit 1
 
 rm -rf ./installer/packages/mironchik.igor.markdown/data/lib/cmake || exit 1
 
