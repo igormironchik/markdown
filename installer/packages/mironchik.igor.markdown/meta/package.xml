@@ -2,7 +2,7 @@
 <Package>
     <DisplayName>Markdown Tools</DisplayName>
     <Description>Install Markdown Tools.</Description>
-    <Version>0.0.5</Version>
+    <Version>0.0.6</Version>
     <ReleaseDate>2023-04-07</ReleaseDate>
     <Default>true</Default>
     <Licenses>
